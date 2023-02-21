@@ -239,25 +239,6 @@ func makeDisbond(cpr *ClientPortResource) error {
 	return processBondAction(cpr, false)
 }
 
-func convertToL3(cpr *ClientPortResource) error {
-	l2, l2Ok := cpr.Resource.GetOkExists("layer2")
-	isLayer2 := contains(l2Types, cpr.Port.NetworkType)
-
-	if l2Ok && !l2.(bool) && isLayer2 {
-		ips := []packngo.AddressRequest{
-			{AddressFamily: 4, Public: true},
-			{AddressFamily: 4, Public: false},
-			{AddressFamily: 6, Public: true},
-		}
-		port, _, err := cpr.Client.Ports.ConvertToLayerThree(cpr.Port.ID, ips)
-		if err != nil {
-			return err
-		}
-		*(cpr.Port) = *port
-	}
-	return nil
-}
-
 func portSanityChecks(cpr *ClientPortResource) error {
 	isBondPort := cpr.Port.Type == "NetworkBondPort"
 
