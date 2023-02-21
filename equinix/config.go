@@ -162,46 +162,7 @@ func (c *Config) Load(ctx context.Context) error {
 	return nil
 }
 
-// NewFabricClient returns a new client for accessing Equinix Fabric's v4 API.
-func (c *Config) NewFabricClient() *v4.APIClient {
-	transport := logging.NewTransport("Equinix Fabric", http.DefaultTransport)
-	authClient := &http.Client{
-		Transport: transport,
-	}
-	authClient.Timeout = c.requestTimeout()
-	fabricHeaderMap := map[string]string{
-		"X-SOURCE":         "API",
-		"X-CORRELATION-ID": CorrelationId(25),
-	}
-	v4Configuration := v4.Configuration{
-		BasePath:      c.BaseURL,
-		DefaultHeader: fabricHeaderMap,
-		UserAgent:     "equinix/fabric-go",
-		HTTPClient:    authClient,
-	}
-	client := v4.NewAPIClient(&v4Configuration)
-	return client
-}
 
-// NewMetalClient returns a new client for accessing Equinix Metal's API.
-func (c *Config) NewMetalClient() *packngo.Client {
-	transport := http.DefaultTransport
-	// transport = &DumpTransport{http.DefaultTransport} // Debug only
-	transport = logging.NewTransport("Equinix Metal", transport)
-	retryClient := retryablehttp.NewClient()
-	retryClient.HTTPClient.Transport = transport
-	retryClient.RetryMax = c.MaxRetries
-	retryClient.RetryWaitMin = time.Second
-	retryClient.RetryWaitMax = c.MaxRetryWait
-	retryClient.CheckRetry = MetalRetryPolicy
-	standardClient := retryClient.StandardClient()
-	baseURL, _ := url.Parse(c.BaseURL)
-	baseURL.Path = path.Join(baseURL.Path, metalBasePath) + "/"
-	client, _ := packngo.NewClientWithBaseURL(consumerToken, c.AuthToken, standardClient, baseURL.String())
-	client.UserAgent = c.fullUserAgent(client.UserAgent)
-	c.metalUserAgent = client.UserAgent
-	return client
-}
 
 func (c *Config) requestTimeout() time.Duration {
 	if c.RequestTimeout == 0 {
@@ -260,15 +221,6 @@ func (c *Config) addModuleToNEUserAgent(client *ne.Client, d *schema.ResourceDat
 	rc := cli.(*ne.RestClient)
 	rc.SetHeader("User-agent", generateModuleUserAgentString(d, c.neUserAgent))
 	*client = rc
-}
-
-// TODO (ocobleseqx) - known issue, Metal services are initialized using the metal client pointer
-// if two or more modules in same project interact with metal resources they will override
-// the UserAgent resulting in swapped UserAgent.
-// This can be fixed by letting the headers be overwritten on the initialized Packngo ServiceOp
-// clients on a query-by-query basis.
-func (c *Config) addModuleToMetalUserAgent(d *schema.ResourceData) {
-	c.metal.UserAgent = generateModuleUserAgentString(d, c.metalUserAgent)
 }
 
 func generateModuleUserAgentString(d *schema.ResourceData, baseUserAgent string) string {

@@ -261,20 +261,6 @@ func makeDisbond(cpr *ClientPortResource) error {
 	return processBondAction(cpr, false)
 }
 
-func convertToL2(cpr *ClientPortResource) error {
-	l2, l2Ok := cpr.Resource.GetOkExists("layer2")
-	isLayer2 := contains(l2Types, cpr.Port.NetworkType)
-
-	if l2Ok && l2.(bool) && !isLayer2 {
-		port, _, err := cpr.Client.Ports.ConvertToLayerTwo(cpr.Port.ID)
-		if err != nil {
-			return err
-		}
-		*(cpr.Port) = *port
-	}
-	return nil
-}
-
 func convertToL3(cpr *ClientPortResource) error {
 	l2, l2Ok := cpr.Resource.GetOkExists("layer2")
 	isLayer2 := contains(l2Types, cpr.Port.NetworkType)
