@@ -9,7 +9,6 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"os"
-	"path"
 	"regexp"
 	"strings"
 	"time"
@@ -19,7 +18,6 @@ import (
 	"github.com/artraf/custom-ne-go"
 	"github.com/equinix/oauth2-go"
 	"github.com/artraf/equinix-custom-ne/version"
-	"github.com/hashicorp/go-retryablehttp"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/logging"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/meta"
@@ -155,10 +153,7 @@ func (c *Config) Load(ctx context.Context) error {
 		"User-agent": c.neUserAgent,
 	})
 
-	c.ecx = ecxClient
 	c.ne = neClient
-	c.metal = c.NewMetalClient()
-	c.fabricClient = c.NewFabricClient()
 	return nil
 }
 

@@ -3,13 +3,11 @@ package equinix
 import (
 	"fmt"
 	"log"
-	"strings"
 	"sync"
 	"time"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 	"github.com/packethost/packngo"
 )
 
@@ -213,27 +211,6 @@ func waitForDeviceAttribute(d *schema.ResourceData, targets []string, pending []
 	}
 
 	return "", err
-}
-
-// powerOnAndWait Powers on the device and waits for it to be active.
-func powerOnAndWait(d *schema.ResourceData, meta interface{}) error {
-	meta.(*Config).addModuleToMetalUserAgent(d)
-	client := meta.(*Config).metal
-
-	_, err := client.Devices.PowerOn(d.Id())
-	if err != nil {
-		return friendlyError(err)
-	}
-
-	_, err = waitForDeviceAttribute(d, []string{"active", "failed"}, []string{"off"}, "state", client)
-	if err != nil {
-		return err
-	}
-	state := d.Get("state").(string)
-	if state != "active" {
-		return friendlyError(fmt.Errorf("device in non-active state \"%s\"", state))
-	}
-	return nil
 }
 
 func validateFacilityForDevice(v interface{}, k string) (ws []string, errors []error) {
