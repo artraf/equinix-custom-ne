@@ -17,28 +17,6 @@ type ClientPortResource struct {
 	Resource *schema.ResourceData
 }
 
-func getClientPortResource(d *schema.ResourceData, meta interface{}) (*ClientPortResource, *packngo.Response, error) {
-	meta.(*Config).addModuleToMetalUserAgent(d)
-	client := meta.(*Config).metal
-
-	port_id := d.Get("port_id").(string)
-
-	getOpts := &packngo.GetOptions{Includes: []string{
-		"native_virtual_network",
-		"virtual_networks",
-	}}
-	port, resp, err := client.Ports.Get(port_id, getOpts)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	cpr := &ClientPortResource{
-		Client:   client,
-		Port:     port,
-		Resource: d,
-	}
-	return cpr, resp, nil
-}
 
 func getPortByResourceData(d *schema.ResourceData, client *packngo.Client) (*packngo.Port, error) {
 	portId, portIdOk := d.GetOk("port_id")
