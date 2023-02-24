@@ -1,7 +1,7 @@
 GOCMD				=go
 TEST				?=$$(go list ./... |grep -v 'vendor')
 INSTALL_DIR			=~/.terraform.d/plugins
-BINARY				=terraform-provider-equinix
+BINARY				=terraform-equinix-custom-ne
 SWEEP				?=all #Flag required to define the regions that the sweeper is to be ran in
 SWEEP_DIR			?=./equinix
 SWEEP_ARGS			=-timeout 60m
