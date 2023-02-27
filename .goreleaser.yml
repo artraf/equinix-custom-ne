@@ -36,14 +36,10 @@ archives:
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     builds:
       - provider
-      - migration-tool
     files:
       - LICENSE*
       - README*
       - CHANGELOG*
-      - src: 'cmd/migration-tool/*.md'
-        dst: equinix-migration-tool
-        strip_parent: true
 checksum:
   name_template: "{{ .ProjectName }}_{{ .Version }}_SHA256SUMS"
   algorithm: sha256
