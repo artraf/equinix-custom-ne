@@ -2,9 +2,9 @@
 subcategory: "Network Edge"
 ---
 
-# equinix_network_device_link (Resource)
+# eqx-custom-ne_network_device_link (Resource)
 
-Resource `equinix_network_device_link` allows creation and management of Equinix
+Resource `eqx-custom-ne_network_device_link` allows creation and management of Equinix
 Network Edge virtual network device links.
 
 ## Example Usage
@@ -12,23 +12,23 @@ Network Edge virtual network device links.
 ```hcl
 # Example of device link with HA device pair
 # where each device is in different metro
-resource "equinix_network_device_link" "test" {
+resource "eqx-custom-ne_network_device_link" "test" {
   name   = "test-link"
   subnet = "192.168.40.64/27"
   device {
-    id           = equinix_network_device.test.uuid
-    asn          = equinix_network_device.test.asn > 0 ? equinix_network_device.test.asn : 22111
+    id           = eqx-custom-ne_network_device.test.uuid
+    asn          = eqx-custom-ne_network_device.test.asn > 0 ? eqx-custom-ne_network_device.test.asn : 22111
     interface_id = 6
   }
   device {
-    id           = equinix_network_device.test.secondary_device[0].uuid
-    asn          = equinix_network_device.test.secondary_device[0].asn > 0 ? equinix_network_device.test.secondary_device[0].asn : 22333
+    id           = eqx-custom-ne_network_device.test.secondary_device[0].uuid
+    asn          = eqx-custom-ne_network_device.test.secondary_device[0].asn > 0 ? eqx-custom-ne_network_device.test.secondary_device[0].asn : 22333
     interface_id = 7
   }
   link {
-    account_number  = equinix_network_device.test.account_number
-    src_metro_code  = equinix_network_device.test.metro_code
-    dst_metro_code  = equinix_network_device.test.secondary_device[0].metro_code
+    account_number  = eqx-custom-ne_network_device.test.account_number
+    src_metro_code  = eqx-custom-ne_network_device.test.metro_code
+    dst_metro_code  = eqx-custom-ne_network_device.test.secondary_device[0].metro_code
     throughput      = "50"
     throughput_unit = "Mbps"
   }
@@ -98,5 +98,5 @@ options:
 This resource can be imported using an existing ID:
 
 ```sh
-terraform import equinix_network_device_link.example {existing_id}
+terraform import eqx-custom-ne_network_device_link.example {existing_id}
 ```

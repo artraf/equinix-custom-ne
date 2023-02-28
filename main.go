@@ -5,7 +5,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/artraf/equinix-custom-ne/equinix"
+	"github.com/artraf/equinix-custom-ne/custom-eqx"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 )
 

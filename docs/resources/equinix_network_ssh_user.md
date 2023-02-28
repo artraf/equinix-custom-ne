@@ -2,9 +2,9 @@
 subcategory: "Network Edge"
 ---
 
-# equinix_network_ssh_user (Resource)
+# eqx-custom-ne_network_ssh_user (Resource)
 
-Resource `equinix_network_ssh_user` allows creation and management of Equinix Network
+Resource `eqx-custom-ne_network_ssh_user` allows creation and management of Equinix Network
 Edge SSH users.
 
 ## Example Usage
@@ -13,12 +13,12 @@ Edge SSH users.
 # Create SSH user with password auth method and associate it with
 # two virtual network devices
 
-resource "equinix_network_ssh_user" "john" {
+resource "eqx-custom-ne_network_ssh_user" "john" {
   username = "john"
   password = "secret"
   device_ids = [
-    equinix_network_device.csr1000v-ha.uuid,
-    equinix_network_device.csr1000v-ha.redundant_uuid
+    eqx-custom-ne_network_device.csr1000v-ha.uuid,
+    eqx-custom-ne_network_device.csr1000v-ha.redundant_uuid
   ]
 }
 ```
@@ -42,5 +42,5 @@ In addition to all arguments above, the following attributes are exported:
 This resource can be imported using an existing ID:
 
 ```sh
-terraform import equinix_network_ssh_user.example {existing_id}
+terraform import eqx-custom-ne_network_ssh_user.example {existing_id}
 ```

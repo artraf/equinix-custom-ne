@@ -64,7 +64,7 @@ BUG FIXES:
 
 ENHANCEMENTS:
 
-- `equinix_network_acl_template` added description field for the acl template inbound rule [#236](https://github.com/artraf/equinix-custom-ne/pull/236)
+- `eqx-custom-ne_network_acl_template` added description field for the acl template inbound rule [#236](https://github.com/artraf/equinix-custom-ne/pull/236)
 - Update go version to 1.18.3 in main module and github actions workflows [#219](https://github.com/artraf/equinix-custom-ne/pull/219)
 - Fix missing equinix_metal_ name prefix in `equinix_metal_hardware_reservation` datasource documentation example [#231](https://github.com/artraf/equinix-custom-ne/pull/231)
 - Adds check for forbidden API error in `equinix_metal_device` read function [#235](https://github.com/artraf/equinix-custom-ne/pull/235)
@@ -98,14 +98,14 @@ FEATURES:
 
 BUG FIXES:
 
-- Change `equinix_network_acl_template` docs subcategory to network edge [#128](https://github.com/artraf/equinix-custom-ne/pull/128)
-- `equinix_network_device` removed hostname validation and fix acl issues in device deletion flow [#126](https://github.com/artraf/equinix-custom-ne/pull/126)
+- Change `eqx-custom-ne_network_acl_template` docs subcategory to network edge [#128](https://github.com/artraf/equinix-custom-ne/pull/128)
+- `eqx-custom-ne_network_device` removed hostname validation and fix acl issues in device deletion flow [#126](https://github.com/artraf/equinix-custom-ne/pull/126)
 - Fix provider required credentials [#125](https://github.com/artraf/equinix-custom-ne/pull/125)
 - migration-tool: remove duplicate readme.md [#153](https://github.com/artraf/equinix-custom-ne/pull/153)
 
 ENHANCEMENTS:
 
-- `mgmt_acl_template_uuid` argument added to `equinix_network_device` [#115](https://github.com/artraf/equinix-custom-ne/pull/115)
+- `mgmt_acl_template_uuid` argument added to `eqx-custom-ne_network_device` [#115](https://github.com/artraf/equinix-custom-ne/pull/115)
 - Improved documentation [#123](https://github.com/artraf/equinix-custom-ne/pull/123)
 - Packngo version bumped to 0.25.0
 - update go-getter to 1.5.11 for CWE-532 [#139](https://github.com/artraf/equinix-custom-ne/pull/139)
@@ -162,8 +162,8 @@ FEATURES:
 BUG FIXES:
 
 - `equinix_ecx_l2_serviceprofile` detecting diff after refresh [#90](https://github.com/artraf/equinix-custom-ne/pull/90)
-- `equinix_network_device` allow value 0 for additional bandwidth [#91](https://github.com/artraf/equinix-custom-ne/pull/91)
-- `equinix_network_device` hostname max length now match portal limits [#92](https://github.com/artraf/equinix-custom-ne/pull/92)
+- `eqx-custom-ne_network_device` allow value 0 for additional bandwidth [#91](https://github.com/artraf/equinix-custom-ne/pull/91)
+- `eqx-custom-ne_network_device` hostname max length now match portal limits [#92](https://github.com/artraf/equinix-custom-ne/pull/92)
 - `equinix_ecx_l2_connection` will wait for the secondary connection destroy [#103](https://github.com/artraf/equinix-custom-ne/pull/103)
 - `equinix_ecx_l2_connection` named_tag now is idempotent [#97](https://github.com/artraf/equinix-custom-ne/issues/97)
 - `equinix_ecx_l2_connection` was not storing secondary connection fields [#103](https://github.com/artraf/equinix-custom-ne/pull/103)
@@ -173,7 +173,7 @@ ENHANCEMENTS:
 - `service_token` added to `equinix_ecx_l2_connection` [#96](https://github.com/artraf/equinix-custom-ne/issues/96)
 - `service_token` for secondary_connection added to `equinix_ecx_l2_connection` [#111](https://github.com/artraf/equinix-custom-ne/pull/111)
 - update documentation links for timeout parameters  [#101](https://github.com/artraf/equinix-custom-ne/pull/101)
-- `cluster_details` added to `equinix_network_device` [#105](https://github.com/artraf/equinix-custom-ne/pull/105)
+- `cluster_details` added to `eqx-custom-ne_network_device` [#105](https://github.com/artraf/equinix-custom-ne/pull/105)
 
 ## 1.4.0 (January 14, 2022)
 
@@ -183,21 +183,21 @@ NOTES:
 - `equinix_acl_template` argument `inbound_rule.#.subnets` is now deprecated [#67](https://github.com/artraf/equinix-custom-ne/pull/67)
 - `equinix_acl_template` attribute `device_id` is now deprecated [#67](https://github.com/artraf/equinix-custom-ne/pull/67)
 - `equinix_ecx_l2_connection_accepter` is now deprecated [#64](https://github.com/artraf/equinix-custom-ne/pull/64)
-- `equinix_network_device_link` argument `device.interface_id` changes taint the resource [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
-- `equinix_network_device_link` attribute `link.src_zone_code` is now deprecated and optional [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
-- `equinix_network_device_link` attribute `link.dest_zone_code` is now deprecated and optional [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
+- `eqx-custom-ne_network_device_link` argument `device.interface_id` changes taint the resource [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
+- `eqx-custom-ne_network_device_link` attribute `link.src_zone_code` is now deprecated and optional [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
+- `eqx-custom-ne_network_device_link` attribute `link.dest_zone_code` is now deprecated and optional [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
 
 BUG FIXES:
 
 - `equinix_ecx_l2_connection` will wait for the secondary connection [#87](https://github.com/artraf/equinix-custom-ne/pull/87)
-- `equinix_network_device_link` no longer jitters on zone code fields [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
+- `eqx-custom-ne_network_device_link` no longer jitters on zone code fields [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
 
 ENHANCEMENTS:
 
 - `equinix_acl_template` attribute `device_details` (`uuid`, `name`, `acl_status`) was added [#67](https://github.com/artraf/equinix-custom-ne/pull/67)
 - `equinix_ecx_l2_connection` attribute `actions` was added [#86](https://github.com/artraf/equinix-custom-ne/pull/86)
-- `equinix_network_device_link` argument `device.asn` is now optional [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
-- `equinix_network_device_link` argument `device.subnet` is now optional [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
+- `eqx-custom-ne_network_device_link` argument `device.asn` is now optional [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
+- `eqx-custom-ne_network_device_link` argument `device.subnet` is now optional [#77](https://github.com/artraf/equinix-custom-ne/pull/77)
 - fix connectivity example to establish an Azure connection [#71](https://github.com/artraf/equinix-custom-ne/pull/71)
 - replace Travis CI with GitHub Workflows [#65](https://github.com/artraf/equinix-custom-ne/pull/65)
 - update go modules and update go to 1.17 [#63](https://github.com/artraf/equinix-custom-ne/pull/63)
@@ -206,19 +206,19 @@ ENHANCEMENTS:
 
 BUG FIXES:
 
-- `equinix_network_device` no longer loses `license_token` values after updating the resource ([#59](https://github.com/artraf/equinix-custom-ne/issues/59))
+- `eqx-custom-ne_network_device` no longer loses `license_token` values after updating the resource ([#59](https://github.com/artraf/equinix-custom-ne/issues/59))
 
 ENHANCEMENTS:
 
-- `wan_interface_id` added to `equinix_network_device` ([#59](https://github.com/artraf/equinix-custom-ne/issues/59))
+- `wan_interface_id` added to `eqx-custom-ne_network_device` ([#59](https://github.com/artraf/equinix-custom-ne/issues/59))
 - `equinix_ecx_l2_connection` resources can now be imported ([#49](https://github.com/artraf/equinix-custom-ne/issues/49))
 - `equinix_ecx_l2_connection_accepter` resources can now be imported ([#49](https://github.com/artraf/equinix-custom-ne/issues/49))
 - `equinix_ecx_l2_serviceprofile` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
-- `equinix_network_acl_template` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
-- `equinix_network_bgp` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
-- `equinix_network_device_link` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
-- `equinix_network_ssh_key` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
-- `equinix_network_ssh_user` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
+- `eqx-custom-ne_network_acl_template` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
+- `eqx-custom-ne_network_bgp` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
+- `eqx-custom-ne_network_device_link` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
+- `eqx-custom-ne_network_ssh_key` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
+- `eqx-custom-ne_network_ssh_user` resources can now be imported ([#50](https://github.com/artraf/equinix-custom-ne/issues/50))
 - darwin/arm64 binaries are now published ([#51](https://github.com/artraf/equinix-custom-ne/issues/51))
 - Go version used for builds was updated to 1.17 ([#52](https://github.com/artraf/equinix-custom-ne/issues/52))
 
@@ -226,7 +226,7 @@ ENHANCEMENTS:
 
 FEATURES:
 
-- **New Resource**: `equinix_network_device_link` ([#43](https://github.com/artraf/equinix-custom-ne/issues/43))
+- **New Resource**: `eqx-custom-ne_network_device_link` ([#43](https://github.com/artraf/equinix-custom-ne/issues/43))
 
 ## 1.1.0 (April 09, 2021)
 
@@ -239,15 +239,15 @@ secondary connection. API logic of Fabric is reflected accordingly in client mod
 FEATURES:
 
 - **New Data source**: `equinix_ecx_l2_sellerprofiles`: ([#40](https://github.com/artraf/equinix-custom-ne/issues/40))
-- **New Resource**: `equinix_network_ssh_key` ([#25](https://github.com/artraf/equinix-custom-ne/issues/25))
-- **New Resource**: `equinix_network_acl_template` ([#19](https://github.com/artraf/equinix-custom-ne/issues/19))
-- **New Resource**: `equinix_network_bgp` ([#16](https://github.com/artraf/equinix-custom-ne/issues/16))
-- **New Data source**: `equinix_network_account` ([#13](https://github.com/artraf/equinix-custom-ne/issues/13))
-- **New Data source**: `equinix_network_device_type` ([#13](https://github.com/artraf/equinix-custom-ne/issues/13))
-- **New Data source**: `equinix_network_device_software` ([#13](https://github.com/artraf/equinix-custom-ne/issues/13))
-- **New Data source**: `equinix_network_device_platform` ([#13](https://github.com/artraf/equinix-custom-ne/issues/13))
-- **New Resource**: `equinix_network_device` ([#4](https://github.com/artraf/equinix-custom-ne/issues/4))
-- **New Resource**: `equinix_network_ssh_user` ([#4](https://github.com/artraf/equinix-custom-ne/issues/4))
+- **New Resource**: `eqx-custom-ne_network_ssh_key` ([#25](https://github.com/artraf/equinix-custom-ne/issues/25))
+- **New Resource**: `eqx-custom-ne_network_acl_template` ([#19](https://github.com/artraf/equinix-custom-ne/issues/19))
+- **New Resource**: `eqx-custom-ne_network_bgp` ([#16](https://github.com/artraf/equinix-custom-ne/issues/16))
+- **New Data source**: `eqx-custom-ne_network_account` ([#13](https://github.com/artraf/equinix-custom-ne/issues/13))
+- **New Data source**: `eqx-custom-ne_network_device_type` ([#13](https://github.com/artraf/equinix-custom-ne/issues/13))
+- **New Data source**: `eqx-custom-ne_network_device_software` ([#13](https://github.com/artraf/equinix-custom-ne/issues/13))
+- **New Data source**: `eqx-custom-ne_network_device_platform` ([#13](https://github.com/artraf/equinix-custom-ne/issues/13))
+- **New Resource**: `eqx-custom-ne_network_device` ([#4](https://github.com/artraf/equinix-custom-ne/issues/4))
+- **New Resource**: `eqx-custom-ne_network_ssh_user` ([#4](https://github.com/artraf/equinix-custom-ne/issues/4))
 
 ENHANCEMENTS:
 

@@ -2,7 +2,7 @@
 subcategory: "Network Edge"
 ---
 
-# equinix_network_device (Data Source)
+# eqx-custom-ne_network_device (Data Source)
 
 Use this data source to get Equinix Network Edge device details.
 
@@ -10,12 +10,12 @@ Use this data source to get Equinix Network Edge device details.
 
 ```hcl
 # Retrieve data for an existing Equinix Network Edge device with UUID "f0b5c553-cdeb-4bc3-95b8-23db9ccfd5ee"
-data "equinix_network_device" "by_uuid" {
+data "eqx-custom-ne_network_device" "by_uuid" {
   uuid = "f0b5c553-cdeb-4bc3-95b8-23db9ccfd5ee"
 }
 
 # Retrieve data for an existing Equinix Network Edge device named "Arcus-Gateway-A1"
-data "equinix_network_device" "by_name" {
+data "eqx-custom-ne_network_device" "by_name" {
   name = "Arcus-Gateway-A1"
 }
 ```

@@ -2,7 +2,7 @@
 subcategory: "Network Edge"
 ---
 
-# equinix_network_device_software (Data Source)
+# eqx-custom-ne_network_device_software (Data Source)
 
 Use this data source to get Equinix Network Edge device software details for a given
 device type. For further details, check supported
@@ -13,7 +13,7 @@ device type. For further details, check supported
 ```hcl
 # Retrieve details for CSR1000V device software with latest path of 16.09 version
 # that supports IPBASE package
-data "equinix_network_device_software" "csrLatest1609" {
+data "eqx-custom-ne_network_device_software" "csrLatest1609" {
   device_type   = "CSR1000V"
   version_regex = "^16.09.+"
   packages      = ["IPBASE"]

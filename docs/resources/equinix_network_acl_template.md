@@ -2,9 +2,9 @@
 subcategory: "Network Edge"
 ---
 
-# equinix_network_acl_template (Resource)
+# eqx-custom-ne_network_acl_template (Resource)
 
-Resource `equinix_network_acl_template` allows creation and management of
+Resource `eqx-custom-ne_network_acl_template` allows creation and management of
 Equinix Network Edge device Access Control List templates.
 
 Device ACL templates give possibility to define set of rules will allowed inbound
@@ -14,7 +14,7 @@ traffic. Templates can be assigned to the network devices.
 
 ```hcl
 # Creates ACL template and assigns it to the network device
-resource "equinix_network_acl_template" "myacl" {
+resource "eqx-custom-ne_network_acl_template" "myacl" {
   name        = "test"
   description = "Test ACL template"
   inbound_rule {
@@ -76,5 +76,5 @@ The `device_details` block has below fields:
 This resource can be imported using an existing ID:
 
 ```sh
-terraform import equinix_network_acl_template.example {existing_id}
+terraform import eqx-custom-ne_network_acl_template.example {existing_id}
 ```

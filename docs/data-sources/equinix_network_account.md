@@ -2,7 +2,7 @@
 subcategory: "Network Edge"
 ---
 
-# equinix_network_account (Data Source)
+# eqx-custom-ne_network_account (Data Source)
 
 Use this data source to get number and identifier of Equinix Network Edge
 billing account in a given metro location.
@@ -14,13 +14,13 @@ in corresponding metro location.
 
 ```hcl
 # Retrieve details of an account in Active status in DC metro
-data "equinix_network_account" "dc" {
+data "eqx-custom-ne_network_account" "dc" {
   metro_code = "DC"
   status     = "Active"
 }
 
 output "number" {
-  value = data.equinix_network_account.dc.number
+  value = data.eqx-custom-ne_network_account.dc.number
 }
 ```
 

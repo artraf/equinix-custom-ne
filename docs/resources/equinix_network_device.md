@@ -2,9 +2,9 @@
 subcategory: "Network Edge"
 ---
 
-# equinix_network_device (Resource)
+# eqx-custom-ne_network_device (Resource)
 
-Resource `equinix_network_device` allows creation and management of Equinix Network Edge virtual
+Resource `eqx-custom-ne_network_device` allows creation and management of Equinix Network Edge virtual
 network devices.
 
 Network Edge virtual network devices can be created in two modes:
@@ -28,19 +28,19 @@ for `self-configured` devices.
 # Create pair of redundant, managed CSR1000V routers with license subscription
 # in two different metro locations
 
-data "equinix_network_account" "dc" {
+data "eqx-custom-ne_network_account" "dc" {
   metro_code = "DC"
 }
 
-data "equinix_network_account" "sv" {
+data "eqx-custom-ne_network_account" "sv" {
   metro_code = "SV"
 }
 
-resource "equinix_network_device" "csr1000v-ha" {
+resource "eqx-custom-ne_network_device" "csr1000v-ha" {
   name            = "tf-csr1000v-p"
   throughput      = 500
   throughput_unit = "Mbps"
-  metro_code      = data.equinix_network_account.dc.metro_code
+  metro_code      = data.eqx-custom-ne_network_account.dc.metro_code
   type_code       = "CSR1000V"
   self_managed    = false
   byol            = false
@@ -48,15 +48,15 @@ resource "equinix_network_device" "csr1000v-ha" {
   notifications   = ["john@equinix.com", "marry@equinix.com", "fred@equinix.com"]
   hostname        = "csr1000v-p"
   term_length     = 6
-  account_number  = data.equinix_network_account.dc.number
+  account_number  = data.eqx-custom-ne_network_account.dc.number
   version         = "16.09.05"
   core_count      = 2
   secondary_device {
     name            = "tf-csr1000v-s"
-    metro_code      = data.equinix_network_account.sv.metro_code
+    metro_code      = data.eqx-custom-ne_network_account.sv.metro_code
     hostname        = "csr1000v-s"
     notifications   = ["john@equinix.com", "marry@equinix.com"]
-    account_number  = data.equinix_network_account.sv.number
+    account_number  = data.eqx-custom-ne_network_account.sv.number
   }
 }
 ```
@@ -64,20 +64,20 @@ resource "equinix_network_device" "csr1000v-ha" {
 ```hcl
 # Create self configured PANW cluster with BYOL license
 
-data "equinix_network_account" "sv" {
+data "eqx-custom-ne_network_account" "sv" {
   metro_code = "SV"
 }
 
-resource "equinix_network_device" "panw-cluster" {
+resource "eqx-custom-ne_network_device" "panw-cluster" {
   name            = "tf-panw"
-  metro_code      = data.equinix_network_account.sv.metro_code
+  metro_code      = data.eqx-custom-ne_network_account.sv.metro_code
   type_code       = "PA-VM"
   self_managed    = true
   byol            = true
   package_code    = "VM100"
   notifications   = ["john@equinix.com", "marry@equinix.com", "fred@equinix.com"]
   term_length     = 6
-  account_number  = data.equinix_network_account.sv.number
+  account_number  = data.eqx-custom-ne_network_account.sv.number
   version         = "10.1.3"
   interface_count = 10
   core_count      = 2
@@ -107,35 +107,35 @@ resource "equinix_network_device" "panw-cluster" {
 ```hcl
 # Create self configured single Aviatrix device with cloud init file
 
-data "equinix_network_account" "sv" {
+data "eqx-custom-ne_network_account" "sv" {
   metro_code = "SV"
 }
 
 variable "filepath" { default = "cloudInitFileFolder/TF-AVX-cloud-init-file.txt" }
 
-resource "equinix_network_file" "aviatrix-cloudinit-file" {
+resource "eqx-custom-ne_network_file" "aviatrix-cloudinit-file" {
   file_name = "TF-AVX-cloud-init-file.txt"
   content = file("${path.module}/${var.filepath}")
-  metro_code = data.equinix_network_account.sv.metro_code
+  metro_code = data.eqx-custom-ne_network_account.sv.metro_code
   device_type_code = "AVIATRIX_EDGE"
   process_type = "CLOUD_INIT"
   self_managed = true
   byol = true
 }
 
-resource "equinix_network_device" "aviatrix-single" {
+resource "eqx-custom-ne_network_device" "aviatrix-single" {
   name            = "tf-aviatrix"
-  metro_code      = data.equinix_network_account.sv.metro_code
+  metro_code      = data.eqx-custom-ne_network_account.sv.metro_code
   type_code       = "AVIATRIX_EDGE"
   self_managed    = true
   byol            = true
   package_code    = "STD"
   notifications   = ["john@equinix.com"]
   term_length     = 6
-  account_number  = data.equinix_network_account.sv.number
+  account_number  = data.eqx-custom-ne_network_account.sv.number
   version         = "6.9"
   core_count      = 2
-  cloud_init_file_id = equinix_network_file.aviatrix-cloudinit-file.uuid
+  cloud_init_file_id = eqx-custom-ne_network_file.aviatrix-cloudinit-file.uuid
   acl_template_id = "c06150ea-b604-4ad1-832a-d63936e9b938"
 }
 ```
@@ -143,21 +143,21 @@ resource "equinix_network_device" "aviatrix-single" {
 ```hcl
 # Create self configured single Catalyst 8000V (Autonomous Mode) router with license token
 
-data "equinix_network_account" "sv" {
+data "eqx-custom-ne_network_account" "sv" {
   name = "account-name"
   metro_code = "SV"
 }
 
-resource "equinix_network_device" "c8kv-single" {
+resource "eqx-custom-ne_network_device" "c8kv-single" {
   name            = "tf-c8kv"
-  metro_code      = data.equinix_network_account.sv.metro_code
+  metro_code      = data.eqx-custom-ne_network_account.sv.metro_code
   type_code       = "C8000V"
   self_managed    = true
   byol            = true
   package_code    = "network-essentials"
   notifications   = ["test@equinix.com"]
   hostname        = "C8KV"
-  account_number  = data.equinix_network_account.sv.number
+  account_number  = data.eqx-custom-ne_network_account.sv.number
   version         = "17.06.01a"
   core_count      = 2
   term_length     = 6
@@ -354,7 +354,7 @@ options:
 This resource can be imported using an existing ID:
 
 ```sh
-terraform import equinix_network_device.example {existing_id}
+terraform import eqx-custom-ne_network_device.example {existing_id}
 ```
 
 The `license_token`, `mgmt_acl_template_uuid` and `cloud_init_file_id` fields can not be imported.

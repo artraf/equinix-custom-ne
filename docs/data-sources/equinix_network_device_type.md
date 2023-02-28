@@ -2,7 +2,7 @@
 subcategory: "Network Edge"
 ---
 
-# equinix_network_device_type (Data Source)
+# eqx-custom-ne_network_device_type (Data Source)
 
 Use this data source to get Equinix Network Edge device type details. For further details, check supported
 [Network Edge Vendors and Devices](https://docs.equinix.com/en-us/Content/Interconnection/NE/user-guide/NE-vendors-devices.htm).
@@ -12,7 +12,7 @@ Use this data source to get Equinix Network Edge device type details. For furthe
 ```hcl
 # Retrieve device type details of a Cisco router
 # Device type has to be available in DC and SV metros
-data "equinix_network_device_type" "ciscoRouter" {
+data "eqx-custom-ne_network_device_type" "ciscoRouter" {
   category    = "Router"
   vendor      = "Cisco"
   metro_codes = ["DC", "SV"]

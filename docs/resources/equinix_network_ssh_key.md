@@ -2,9 +2,9 @@
 subcategory: "Network Edge"
 ---
 
-# equinix_network_ssh_key (Resource)
+# eqx-custom-ne_network_ssh_key (Resource)
 
-Resource `equinix_network_ssh_key` allows creation and management of Equinix Network Edge SSH keys.
+Resource `eqx-custom-ne_network_ssh_key` allows creation and management of Equinix Network Edge SSH keys.
 
 ## Example Usage
 
@@ -13,7 +13,7 @@ locals {
   project_id = "<UUID_of_your_project>"
 }
 
-resource "equinix_network_ssh_key" "john" {
+resource "eqx-custom-ne_network_ssh_key" "john" {
   name       = "johnKent"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDpXGdxljAyPp9vH97436U171cX
   2gRkfPnpL8ebrk7ZBeeIpdjtd8mYpXf6fOI0o91TQXZTYtjABzeRgg6/m9hsMOnTHjzWpFyuj/hiPu
@@ -49,5 +49,5 @@ In addition to all arguments above, the following attributes are exported:
 This resource can be imported using an existing ID:
 
 ```sh
-terraform import equinix_network_ssh_key.example {existing_id}
+terraform import eqx-custom-ne_network_ssh_key.example {existing_id}
 ```

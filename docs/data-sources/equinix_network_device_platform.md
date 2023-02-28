@@ -2,7 +2,7 @@
 subcategory: "Network Edge"
 ---
 
-# equinix_network_device_platform (Data Source)
+# eqx-custom-ne_network_device_platform (Data Source)
 
 Use this data source to get Equinix Network Edge device platform configuration details
 for a given device type. For further details, check supported
@@ -13,7 +13,7 @@ for a given device type. For further details, check supported
 ```hcl
 # Retrieve platform configuration of a large flavor for a CSR100V device type
 # Platform has to support IPBASE software package
-data "equinix_network_device_platform" "csrLarge" {
+data "eqx-custom-ne_network_device_platform" "csrLarge" {
   device_type = "CSR1000V"
   flavor      = "large"
   packages    = ["IPBASE"]
