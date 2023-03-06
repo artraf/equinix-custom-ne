@@ -91,7 +91,7 @@ func TestNetworkDevice_updateResourceData(t *testing.T) {
 	// given
 	inputPrimary := &ne.Device{
 		Name:                ne.String("device"),
-		ProjectId:           ne.String("test2"),
+		ProjectId:           ne.String("test"),
 		TypeCode:            ne.String("CSR1000V"),
 		MetroCode:           ne.String("SV"),
 		Throughput:          ne.Int(100),

@@ -1249,6 +1249,7 @@ func updateNetworkDeviceResource(primary *ne.Device, secondary *ne.Device, d *sc
 func flattenNetworkDeviceSecondary(device *ne.Device) interface{} {
 	transformed := make(map[string]interface{})
 	transformed[neDeviceSchemaNames["UUID"]] = device.UUID
+	transformed[neDeviceSchemaNames["ProjectId"]] = device.ProjectId
 	transformed[neDeviceSchemaNames["Name"]] = device.Name
 	transformed[neDeviceSchemaNames["Status"]] = device.Status
 	transformed[neDeviceSchemaNames["LicenseStatus"]] = device.LicenseStatus
