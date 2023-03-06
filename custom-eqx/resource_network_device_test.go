@@ -23,7 +23,7 @@ func TestNetworkDevice_createFromResourceData(t *testing.T) {
 	}
 	expectedPrimary := &ne.Device{
 		Name:                ne.String("device"),
-		ProjectId:           ne.String("test"),
+		project_id:           ne.String("test"),
 		TypeCode:            ne.String("CSR1000V"),
 		MetroCode:           ne.String("SV"),
 		Throughput:          ne.Int(100),
