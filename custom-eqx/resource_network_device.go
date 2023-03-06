@@ -1297,6 +1297,9 @@ func expandNetworkDeviceSecondary(devices []interface{}) *ne.Device {
 	if v, ok := device[neDeviceSchemaNames["Name"]]; ok && !isEmpty(v) {
 		transformed.Name = ne.String(v.(string))
 	}
+	if v, ok := device[neDeviceSchemaNames["ProjectId"]]; ok && !isEmpty(v) {
+		transformed.Name = ne.String(v.(string))
+	}
 	if v, ok := device[neDeviceSchemaNames["MetroCode"]]; ok && !isEmpty(v) {
 		transformed.MetroCode = ne.String(v.(string))
 	}
