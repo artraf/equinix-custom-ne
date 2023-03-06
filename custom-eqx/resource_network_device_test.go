@@ -23,6 +23,7 @@ func TestNetworkDevice_createFromResourceData(t *testing.T) {
 	}
 	expectedPrimary := &ne.Device{
 		Name:                ne.String("device"),
+		ProjectId:           ne.String("test"),
 		TypeCode:            ne.String("CSR1000V"),
 		MetroCode:           ne.String("SV"),
 		Throughput:          ne.Int(100),
@@ -89,6 +90,7 @@ func TestNetworkDevice_updateResourceData(t *testing.T) {
 	// given
 	inputPrimary := &ne.Device{
 		Name:                ne.String("device"),
+		ProjectId:           ne.String("test"),
 		TypeCode:            ne.String("CSR1000V"),
 		MetroCode:           ne.String("SV"),
 		Throughput:          ne.Int(100),
@@ -131,6 +133,7 @@ func TestNetworkDevice_updateResourceData(t *testing.T) {
 	// then
 	assert.Nil(t, err, "Update of resource data does not return error")
 	assert.Equal(t, ne.StringValue(inputPrimary.Name), d.Get(neDeviceSchemaNames["Name"]), "Name matches")
+	assert.Equal(t, ne.StringValue(inputPrimary.ProjectId), d.Get(neDeviceSchemaNames["ProjectId"]), "ProjectId matches")
 	assert.Equal(t, ne.StringValue(inputPrimary.TypeCode), d.Get(neDeviceSchemaNames["TypeCode"]), "TypeCode matches")
 	assert.Equal(t, ne.StringValue(inputPrimary.MetroCode), d.Get(neDeviceSchemaNames["MetroCode"]), "MetroCode matches")
 	assert.Equal(t, ne.IntValue(inputPrimary.Throughput), d.Get(neDeviceSchemaNames["Throughput"]), "Throughput matches")
@@ -163,6 +166,7 @@ func TestNetworkDevice_flattenSecondary(t *testing.T) {
 	input := &ne.Device{
 		UUID:                ne.String("0452fa68-8246-48b1-a1b2-817fb4baddcb"),
 		Name:                ne.String("device"),
+		ProjectId:           ne.String("test"),
 		Status:              ne.String(ne.DeviceStateProvisioned),
 		LicenseStatus:       ne.String(ne.DeviceLicenseStateApplied),
 		MetroCode:           ne.String("SV"),
@@ -207,6 +211,7 @@ func TestNetworkDevice_flattenSecondary(t *testing.T) {
 		map[string]interface{}{
 			neDeviceSchemaNames["UUID"]:                input.UUID,
 			neDeviceSchemaNames["Name"]:                input.Name,
+			neDeviceSchemaNames["ProjectId"]:           input.ProjectId,
 			neDeviceSchemaNames["Status"]:              input.Status,
 			neDeviceSchemaNames["LicenseStatus"]:       input.LicenseStatus,
 			neDeviceSchemaNames["MetroCode"]:           input.MetroCode,
@@ -267,6 +272,7 @@ func TestNetworkDevice_expandSecondary(t *testing.T) {
 		map[string]interface{}{
 			neDeviceSchemaNames["UUID"]:                "0452fa68-8246-48b1-a1b2-817fb4baddcb",
 			neDeviceSchemaNames["Name"]:                "device",
+			neDeviceSchemaNames["ProjectId"]:           "test",
 			neDeviceSchemaNames["MetroCode"]:           "SV",
 			neDeviceSchemaNames["HostName"]:            "SV5",
 			neDeviceSchemaNames["LicenseToken"]:        "sWf3df4gaAvbbexw45ga4f",
@@ -289,6 +295,7 @@ func TestNetworkDevice_expandSecondary(t *testing.T) {
 	expected := &ne.Device{
 		UUID:                ne.String(input[0].(map[string]interface{})[neDeviceSchemaNames["UUID"]].(string)),
 		Name:                ne.String(input[0].(map[string]interface{})[neDeviceSchemaNames["Name"]].(string)),
+		ProjectId:           ne.String(input[0].(map[string]interface{})[neDeviceSchemaNames["ProjectId"]].(string)),
 		MetroCode:           ne.String(input[0].(map[string]interface{})[neDeviceSchemaNames["MetroCode"]].(string)),
 		HostName:            ne.String(input[0].(map[string]interface{})[neDeviceSchemaNames["HostName"]].(string)),
 		LicenseToken:        ne.String(input[0].(map[string]interface{})[neDeviceSchemaNames["LicenseToken"]].(string)),

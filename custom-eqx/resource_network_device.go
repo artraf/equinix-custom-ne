@@ -19,6 +19,7 @@ import (
 
 var neDeviceSchemaNames = map[string]string{
 	"UUID":                "uuid",
+	"ProjectId":           "project_id",
 	"Name":                "name",
 	"TypeCode":            "type_code",
 	"Status":              "status",
@@ -64,6 +65,7 @@ var neDeviceSchemaNames = map[string]string{
 
 var neDeviceDescriptions = map[string]string{
 	"UUID":                "Device unique identifier",
+	"ProjectId":           "The unique identifier of the project",
 	"Name":                "Device name",
 	"TypeCode":            "Device type code",
 	"Status":              "Device provisioning status",
@@ -214,6 +216,12 @@ func createNetworkDeviceSchema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Computed:    true,
 			Description: neDeviceDescriptions["UUID"],
+		},
+		neDeviceSchemaNames["ProjectId"]: {
+			Type:        schema.TypeString,
+			Required:    true,
+			ForceNew:    true,
+			Description: neDeviceDescriptions["ProjectId"],
 		},
 		neDeviceSchemaNames["Name"]: {
 			Type:     schema.TypeString,
@@ -1015,6 +1023,9 @@ func createNetworkDevices(d *schema.ResourceData) (*ne.Device, *ne.Device) {
 	primary = &ne.Device{}
 	if v, ok := d.GetOk(neDeviceSchemaNames["Name"]); ok {
 		primary.Name = ne.String(v.(string))
+	}
+	if v, ok := d.GetOk(neDeviceSchemaNames["ProjectId"]); ok {
+		primary.ProjectId = ne.String(v.(string))
 	}
 	if v, ok := d.GetOk(neDeviceSchemaNames["TypeCode"]); ok {
 		primary.TypeCode = ne.String(v.(string))
