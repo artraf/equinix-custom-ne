@@ -50,6 +50,7 @@ func TestNetworkDevice_createFromResourceData(t *testing.T) {
 	}
 	rawData := map[string]interface{}{
 		neDeviceSchemaNames["Name"]:                ne.StringValue(expectedPrimary.Name),
+		neDeviceSchemaNames["ProjectId"]:           ne.StringValue(expectedPrimary.ProjectId),
 		neDeviceSchemaNames["TypeCode"]:            ne.StringValue(expectedPrimary.TypeCode),
 		neDeviceSchemaNames["MetroCode"]:           ne.StringValue(expectedPrimary.MetroCode),
 		neDeviceSchemaNames["Throughput"]:          ne.IntValue(expectedPrimary.Throughput),
