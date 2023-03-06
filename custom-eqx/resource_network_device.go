@@ -506,6 +506,13 @@ func createNetworkDeviceSchema() map[string]*schema.Schema {
 						ValidateFunc: validation.StringLenBetween(3, 50),
 						Description:  neDeviceDescriptions["Name"],
 					},
+					neDeviceSchemaNames["ProjectId"]: {
+						Type:         schema.TypeString,
+						Required:     true,
+						ForceNew:     true,
+						ValidateFunc: stringIsMetroCode(),
+						Description:  neDeviceDescriptions["ProjectId"],
+					},
 					neDeviceSchemaNames["Status"]: {
 						Type:        schema.TypeString,
 						Computed:    true,
