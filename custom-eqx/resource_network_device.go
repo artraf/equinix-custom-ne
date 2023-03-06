@@ -1121,6 +1121,9 @@ func updateNetworkDeviceResource(primary *ne.Device, secondary *ne.Device, d *sc
 	if err := d.Set(neDeviceSchemaNames["Name"], primary.Name); err != nil {
 		return fmt.Errorf("error reading Name: %s", err)
 	}
+	if err := d.Set(neDeviceSchemaNames["ProjectId"], primary.ProjectId); err != nil {
+		return fmt.Errorf("error reading Name: %s", err)
+	}
 	if err := d.Set(neDeviceSchemaNames["TypeCode"], primary.TypeCode); err != nil {
 		return fmt.Errorf("error reading TypeCode: %s", err)
 	}
